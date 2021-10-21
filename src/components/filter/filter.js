@@ -7,8 +7,6 @@ import allMovies from "../../normalized-movies";
 function Filter({setMovies}) {
   const [selectValue, setSelectValue] = useState();
   const [ inputValue, setInputValue ] = useState("");
-  console.log(inputValue);
-
 
   const handleFormSubmit = (evt) => {
     evt.preventDefault();
@@ -20,7 +18,6 @@ function Filter({setMovies}) {
 
   const handleSortChange = (evt) => {
     setSelectValue(evt.target.value);
-    console.log(selectValue);
   }
 
   const handleSearchChange = (evt) => {
@@ -37,11 +34,11 @@ function Filter({setMovies}) {
       <form onSubmit={handleFormSubmit} className="js-search-form" action="https://echo.htmlacademy.ru" method="GET" autoComplete="off">
         <div className="form-group">
           <Input onChange={handleSearchChange} placeholder="Search" name="search" type="search" />
-          <p>{inputValue.length < 10 ? "Hammasi yaxshi" : "Chota ni to"}</p>
+          <p>{inputValue.length < 10 ? "Hammasi yaxshi" : "Chota ni to!"}</p>
           {/* <input className="form-control js-search-form__title-input" type="search" name="title" placeholder="Avengers" aria-label="Title" /> */}
         </div>
         <div className="form-group">
-          <Input type="number" step="any" name="min_rating" placeholder="7.5" defaultValue={5} aria-label="Minimum rating" />
+          <Input type="number" step="any" name="min_rating" placeholder="7.5" defaultValue={1} aria-label="Minimum rating" min="1" />
           {/* <input className="form-control js-search-form__rating-input" type="number" step="any" name="min_rating" placeholder="7.5" defaultValue={5} aria-label="Minimum rating" /> */}
         </div>
         <div className="form-group">
@@ -50,8 +47,11 @@ function Filter({setMovies}) {
           </select> */}
           <Select name="genre" aria-label="Select genre">
             <option value="All">All</option>
-            <option value="0">Kino</option>
-            <option value="1">Multik</option>
+            <option value="0">Cinema</option>
+            <option value="2">Series</option>
+            <option value="3">Animation</option>
+            <option value="4">Comedy</option>
+            <option value="5">History</option>
           </Select>
         </div>
         <div className="form-group">
@@ -63,7 +63,6 @@ function Filter({setMovies}) {
             <option value="year_desc">Year (new to old)</option>
             <option value="year_asc">Year (old to new)</option>
           </select>
-          <p>{3 > 2 ? "True" : "False"}</p>
         </div>
         <button className="btn btn-primary btn-block" type="submit">Search</button>
       </form>

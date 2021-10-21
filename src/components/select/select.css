@@ -1,6 +1,7 @@
 .select {
-  padding: 10px 20px;
+  padding: 5px 10px;
   border: 1px solid #ccc;
+  border-radius: 5px;
   color: #222;
   display: block;
   width: 100%;
