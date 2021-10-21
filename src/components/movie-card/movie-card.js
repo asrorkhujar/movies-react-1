@@ -12,7 +12,7 @@ function MovieCard({title, smallPoster: poster, year, imdbRating: rating, traile
         <div className="card-body">
           <h3 className="movie__title h5">{title}</h3>
           <p className="card-text">
-            <Calendar width="25" height="25" fill="blue" />
+            <Calendar width="25" height="25" fill="dodgerblue" />
             <span className="movie__year">{year}</span>
           </p>
 
