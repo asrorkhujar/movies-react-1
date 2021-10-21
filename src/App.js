@@ -27,7 +27,7 @@ function App() {
                 <h2 className="h5">Search results</h2>
                 <div className="alert alert-info">Use the form on the left to search for a movie</div>
                 <ul className="search-results row list-unstyled">
-                  {movies.map((movie) => <MovieCard {...movie} />)}
+                  {movies.slice(1, 100).map((movie) => <MovieCard {...movie} />)}
                 </ul>
               </section>
             </div>{/* row */}

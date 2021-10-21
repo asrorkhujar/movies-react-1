@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Input from "../input/input";
 import Select from "../select/select";
+import sortMovies from "./sortMovies";
 
 import allMovies from "../../normalized-movies";
 
@@ -12,8 +13,11 @@ function Filter({setMovies}) {
     evt.preventDefault();
 
     const titleRegExp = new RegExp(inputValue, "gi");
-    const filtredMovies = allMovies.filter((movie) => movie.title.match(titleRegExp));
-    setMovies(filtredMovies);
+
+    const filteredMovies = allMovies.filter((movie) => movie.title.match(titleRegExp));
+    sortMovies(filteredMovies, selectValue);
+
+    setMovies(filteredMovies);
   }
 
   const handleSortChange = (evt) => {
@@ -23,10 +27,6 @@ function Filter({setMovies}) {
   const handleSearchChange = (evt) => {
     setInputValue(evt.target.value);
   };
-
-  // Inputga matn kiritiladi
-  // 30dan oshib ketsa "No"
-  // 30dan kam bo'ladigan bo'lsa "Okay"
 
   return (
     <section className="mb-4">
@@ -38,14 +38,14 @@ function Filter({setMovies}) {
           {/* <input className="form-control js-search-form__title-input" type="search" name="title" placeholder="Avengers" aria-label="Title" /> */}
         </div>
         <div className="form-group">
-          <Input type="number" step="any" name="min_rating" placeholder="7.5" defaultValue={1} aria-label="Minimum rating" min="1" />
+          <Input type="number" step="any" name="min_rating" placeholder="Movies rating" aria-label="Minimum rating" min="0" />
           {/* <input className="form-control js-search-form__rating-input" type="number" step="any" name="min_rating" placeholder="7.5" defaultValue={5} aria-label="Minimum rating" /> */}
         </div>
         <div className="form-group">
           {/* <select className="form-control js-search-form__genre-select" defaultValue="All" name="genre" aria-label="Genre">
             <option value="All">All</option>
           </select> */}
-          <Select name="genre" aria-label="Select genre">
+          <Select name="genre" aria-label="Select genre" defaultValue="All">
             <option value="All">All</option>
             <option value="0">Cinema</option>
             <option value="2">Series</option>
@@ -56,7 +56,7 @@ function Filter({setMovies}) {
         </div>
         <div className="form-group">
           <select onChange={handleSortChange} className="form-control js-search-form__sort-select" name="sort" aria-label="Sorting">
-            <option value="rating_desc" selected>Rating (high to low)</option>
+            <option value="rating_desc">Rating (high to low)</option>
             <option value="rating_asc">Rating (low to high)</option>
             <option value="az">A-Z</option>
             <option value="za">Z-A</option>
